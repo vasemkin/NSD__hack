@@ -2,6 +2,7 @@ import { ChakraProvider, useToast, Box  } from "@chakra-ui/react"
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { showGreeting, wrongAuthData } from './store/actions/userActions'
+import { getIssuedTokens } from './store/actions/legalActions'
 import Unauthorized from './components/Unauthorized/Unauthorized'
 import Legal from './components/Legal/Legal'
 import theme from './theme/index'
@@ -10,6 +11,7 @@ function App() {
 
   const toast = useToast()
   const user = useSelector(state => state.user)
+  const legal = useSelector(state => state.legal)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -24,6 +26,16 @@ function App() {
         duration: 4000,
       })
       dispatch(showGreeting())
+
+      switch (user.type) {
+        case 'LEGAL':
+          dispatch(getIssuedTokens(user.uuid))
+          break;
+      
+        default:
+          break;
+      }
+
     }
     if (user.wrongAuthData) {
       toast({
@@ -43,7 +55,7 @@ function App() {
     <ChakraProvider theme={theme}>
       {
         user.userAuthenticated ?  
-        user.currentPage === 'LEGAL' ? <Legal user={user}/> : null
+        user.currentPage === 'LEGAL' ? <Legal legal={legal} user={user}/> : null
         :
         <Unauthorized user={user}/>
       }

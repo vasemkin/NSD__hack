@@ -10,9 +10,10 @@ export const Button = {
         },
     },
     variants: {
-        "with-shadow": {
-            bg: "red.400",
-            boxShadow: "0 0 2px 2px #efdfde",
+        "secondary": {
+            bg: "#f3f3f3",
+            fontSize: "12px",
+            color: "rgb(120,120,120)"
         },
         solid: (props) => ({
             bg: props.colorMode === "dark" ? "red.300" : "#C80F2E",

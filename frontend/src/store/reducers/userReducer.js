@@ -6,9 +6,10 @@ const defaultStore = {
     type : 'LEGAL',
     loginTriggered : false,
     userAuthenticated : true,
-    greetingShown : false,
+    greetingShown : true,
     wrongAuthData : false,
-    currentPage : 'LEGAL'
+    currentPage : 'LEGAL',
+    marketPlaceShown : false
 }
 
 export default function userReducer (store = defaultStore, action) {

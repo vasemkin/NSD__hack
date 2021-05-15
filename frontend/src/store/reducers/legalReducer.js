@@ -1,7 +1,8 @@
-import { GET_ISSUED_TOKENS } from '../actions/actionTypes'
+import { GET_ISSUED_TOKENS, SWITCH_TABLE_TYPE, POST_ISSUED_TOKEN } from '../actions/actionTypes'
 
 const defaultStore = {
-    issuedTokens : null
+    issuedTokens : [],
+    tableType : 'issued_tokens'
 }
 
 export default function legalReducer (store = defaultStore, action) {
@@ -13,9 +14,24 @@ export default function legalReducer (store = defaultStore, action) {
                 ...store, 
                 issuedTokens : action.payload
             }
+
+        case POST_ISSUED_TOKEN:
+            const tokens = store.issuedTokens
+            tokens.append(action.payload)
+            
+            return {
+                ...store, 
+                issuedTokens : tokens
+            }
+
+        case SWITCH_TABLE_TYPE:
+            return {
+                ...store, 
+                tableType : action.payload
+            }
         
-            default:
-                return store
+        default:
+            return store
     }
 
 }

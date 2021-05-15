@@ -6,5 +6,15 @@ export const Heading = {
         xl : {
             fontSize: '2rem'
         }
+    },
+    variants: {
+        "bank-normal" : {
+            fontSize : '24px',
+            fontWeight : 'normal'
+        },
+        "bank-bold" : {
+            fontSize : '24px',
+            fontWeight : 'bold'
+        }
     }
 }

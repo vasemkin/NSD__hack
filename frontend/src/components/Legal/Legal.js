@@ -2,31 +2,33 @@ import {
     Flex,
     Box,
     useRadioGroup,
-    Button
+    Button,
+    Image
  } from "@chakra-ui/react"
 
 import { useDispatch } from "react-redux"
-import { getIssuedTokens } from '../../store/actions/legalActions'
+import { getIssuedTokens, switchTableType } from '../../store/actions/legalActions'
 import Header from '../Header/Header'
-import AwaitingPurchaseTokensTable from './AwaitingPurchaseTokensTable/AwaitingPurchaseTokensTable'
+import AwaitingPurchaseTokens from './AwaitingPurchaseTokens/AwaitingPurchaseTokens'
+import IssuedTokens from './IssuedTokens/IssuedTokens'
+import PurchasedTokens from './PurchasedTokens/PurchasedTokens'
+import BankData from './BankData/BankData'
+import IssueToken from './IssueToken/IssueToken'
 import RadioCard from '../Common/RadioCard/RadioCard'
 
 function Legal(props) {
     const user = props.user
+    const legal = props.legal
     const dispatch = useDispatch()
 
-    const options = ["issued_tokens", "purchased_tokens", "token_requests"]
+    const options = ["issued_tokens", "purchased_tokens", "awaiting_purchase_tokens"]
     const defaultTypeValue = options[0]
     
     const { getRootProps, getRadioProps } = useRadioGroup({
         name: "tokenType",
         defaultValue: defaultTypeValue,
         onChange: (tokenType) => {
-            console.log(tokenType)
-            // setRegisterValue({
-            //     ...registerValue,
-            //     type : userType
-            //     })
+            dispatch(switchTableType(tokenType))
             }
         })
         
@@ -39,25 +41,44 @@ function Legal(props) {
             <Flex justify="space-between" w="100%" p="30px 80px">
 
                 <Box w="70%">
-                    <Flex maxWidth="500px" justify="space-between" {...group} mb="2rem">
+                    <Flex maxWidth="600px" justify="space-between" {...group} mb="2rem">
                         {options.map((value) => {
                         const radio = getRadioProps({ value })
                         return (
                             <RadioCard customWidth={"31%"} key={value} {...radio}>
                                 {
-                                    value
+                                    value === 'issued_tokens' ? 'Выпущенные токены' : null
+                                }
+                                {
+                                    value === 'purchased_tokens' ? 'Купленные токены' : null
+                                }
+                                {
+                                    value === 'awaiting_purchase_tokens' ? 'Запросы на покупку' : null
                                 }
                             </RadioCard>
                         )
                         })}
                     </Flex>
 
-                <AwaitingPurchaseTokensTable />
+                    <Box>
+                        {
+                            legal.tableType === 'issued_tokens' ? <IssuedTokens legal={legal} /> : null
+                        }
 
-                <Button
-                onClick = {() => {dispatch(getIssuedTokens(user.uuid))}}
-                ></Button>
+                        {
+                            legal.tableType === 'purchased_tokens' ? <PurchasedTokens /> : null
+                        }
+
+                        {
+                            legal.tableType === 'awaiting_purchase_tokens' ? <AwaitingPurchaseTokens /> : null
+                        }
+                    </Box>
                 
+                </Box>
+
+                <Box w="30%" ml="2rem">
+                    <BankData />
+                    <IssueToken legal={legal} user={user}/>
                 </Box>
 
             </Flex>
