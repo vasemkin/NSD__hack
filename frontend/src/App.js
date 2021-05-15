@@ -7,6 +7,7 @@ import { getMarketTokens } from './store/actions/marketActions'
 import Unauthorized from './components/Unauthorized/Unauthorized'
 import Legal from './components/Legal/Legal'
 import Market from './components/Market/Market'
+import Admin from './components/Admin/Admin'
 import theme from './theme/index'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const toast = useToast()
   const user = useSelector(state => state.user)
   const legal = useSelector(state => state.legal)
+  const admin = useSelector(state => state.admin)
   const market = useSelector(state => state.market)
   const dispatch = useDispatch()
 
@@ -61,7 +63,8 @@ function App() {
         user.userAuthenticated ?  
         
         user.marketPlaceShown ? <Market user={user} market={market}/> :
-            user.type === 'LEGAL' ? <Legal legal={legal} user={user}/> : null
+            user.type === 'LEGAL' ? <Legal legal={legal} user={user}/> : 
+            user.type === 'ADMIN' ? <Admin admin={admin} user={user}/> : null
         :
         <Unauthorized user={user}/>
       }

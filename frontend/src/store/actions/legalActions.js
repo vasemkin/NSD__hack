@@ -17,7 +17,7 @@ export const switchTableType = (type) => {
 
 export const getIssuedTokens = (uuid) => {
     return async dispatch => {
-        const url = `http://3e2a7e2c3826.ngrok.io/myapp/tokens/issued_tokens/${uuid}`
+        const url = `http://b9a882142e40.ngrok.io/myapp/tokens/issued_tokens/${uuid}`
 
         const res = await axios.get(url)
         
@@ -38,12 +38,9 @@ export const postIssuedTokenCreator = (token) => {
 
 export const postIssuedToken = (token) => {
     return async dispatch => {
-        const url = `http://3e2a7e2c3826.ngrok.io/myapp/tokens/issued_tokens/`
+        const url = `http://b9a882142e40.ngrok.io/myapp/tokens/issued_tokens/`
 
         try {
-            
-            console.log(token)
-
             await axios({
                 method: 'post',
                 url: url,
@@ -59,7 +56,7 @@ export const postIssuedToken = (token) => {
 
 export const getAwaitingPurchaseTokens = (uuid) => {
     return async dispatch => {
-        const url = `http://3e2a7e2c3826.ngrok.io/myapp/tokens/issued_tokens/${uuid}`
+        const url = `http://b9a882142e40.ngrok.io/myapp/tokens/issued_tokens/${uuid}`
 
         const res = await axios.get(url)
         

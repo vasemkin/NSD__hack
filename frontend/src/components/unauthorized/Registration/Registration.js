@@ -22,10 +22,9 @@ function Registration (props) {
     const defaultTypeValue = options[0]
 
     const [registerValue, setRegisterValue] = useState({
-        uuid : '',
-        type : '',
+        id : '',
         password : '',
-        type : defaultTypeValue
+        entity_type : defaultTypeValue
     })
 
     function triggerLoginRegSwitch () {
@@ -42,7 +41,7 @@ function Registration (props) {
       onChange: (userType) => {
         setRegisterValue({
             ...registerValue,
-            type : userType
+            entity_type : userType
             })
         },
     })
@@ -72,7 +71,7 @@ function Registration (props) {
                 <Input 
                     onChange={(e) => setRegisterValue({
                         ...registerValue,
-                        uuid : e.target.value
+                        id : e.target.value
                         })
                     }
                     w="336px"
@@ -101,11 +100,11 @@ function Registration (props) {
             <FormControl id="registration__repeatpassword" mb="2rem">
                 <FormLabel fontSize="16px" color="rgba(88, 88, 88, 1);" mb="0">Пароль еще раз</FormLabel>
                 <Input
-                    onChange={(e) => setRegisterValue({
-                        ...registerValue,
-                        password : e.target.value
-                        })
-                    } 
+                    // onChange={(e) => setRegisterValue({
+                    //     ...registerValue,
+                    //     password : e.target.value
+                    //     })
+                    // } 
                     border="none"
                     borderRadius="none"
                     p="15px"

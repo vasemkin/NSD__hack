@@ -26,44 +26,32 @@ export const wrongAuthData = () => {
     }
 }
 
-export const authenticateUserCreator = (uuid, userAuthenticated) => {
+export const authenticateUserCreator = (uuid, type, userAuthenticated) => {
     return {
         type : AUTHENTICATE_USER,
         payload : {
             uuid : uuid,
+            type : type,
             userAuthenticated : userAuthenticated
         }
     }
 }
 
 export const authenticateUser = (body) => {
-    const fakeServerResponse = (req) => {
-        const fakeData = {
-            id : 'tadzhik',
-            passHash : 'тут типа хешануло мой запрос',
-            data : 'приколы'
-        }
-
-        if (req.uuid == fakeData.id) {
-            return {
-                status : 200
-            }
-        } else {
-            return {
-                status : 401
-            }
-        }
-
-    }
-
     return async dispatch => {
-        const url = 'tbd'
-        const fakeRequest = fakeServerResponse(body)
-        if (fakeRequest.status === 200) {
-            dispatch(authenticateUserCreator(body.uuid, true))
+        const url = `http://b9a882142e40.ngrok.io/myapp/user/login`
+        
+        try {
+            const req = await axios({
+                method: 'post',
+                url: url,
+                data: body
+            })
+
+            dispatch(authenticateUserCreator(body.id, req.data.entity_type, true))
             dispatch(showGreeting())
-        } else {
-            dispatch(authenticateUserCreator(body.uuid, false))
+        } catch (error) {
+            dispatch(authenticateUserCreator(body.id, null, false))
             dispatch(wrongAuthData())
         }
     }
@@ -81,35 +69,20 @@ export const registerUserCreator = (uuid, type, userAuthenticated) => {
 }
 
 export const registerUser = (body) => {
-    const fakeServerResponse = () => {
-        return {
-            status : 200
-        }
-    }
-
     return async dispatch => {
-        const url = 'tbd'
-        const fakeRequest = fakeServerResponse(body)
-        if (fakeRequest.status === 200) {
-            dispatch(registerUserCreator(body.uuid, body.type, true))
+        const url = `http://b9a882142e40.ngrok.io/myapp/user/register`
+        try {
+            await axios({
+                method: 'post',
+                url: url,
+                data: body
+            })
+            
+            dispatch(registerUserCreator(body.id, body.entity_type, true))
             dispatch(showGreeting())
-        } else {
-            dispatch(registerUserCreator(body.uuid, body.type, false))
+        } catch (error) {
+            dispatch(registerUserCreator(body.id, body.entity_type, false))
+            dispatch(wrongAuthData())
         }
     }
 }
-
-// export const getTodosCreator = (todos) => {
-//     return {
-//         type: GET_TODOS,
-//         payload: todos
-//     }
-// }
-
-// export const getTodos = () => {
-//     return async dispatch => {
-//         const baseURL = `https://jsonplaceholder.typicode.com/todos/`
-//         const response = await axios.get(baseURL)
-//         dispatch(getTodosCreator(response.data))
-//     }
-// }

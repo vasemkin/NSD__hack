@@ -10,7 +10,7 @@ export const getMarketTokensCreator = (tokens) => {
 
 export const getMarketTokens = () => {
     return async dispatch => {
-        const url = `http://3e2a7e2c3826.ngrok.io/myapp/tokens/issued_tokens/search`
+        const url = `http://b9a882142e40.ngrok.io/myapp/tokens/issued_tokens/search`
 
         const res = await axios.get(url)
         

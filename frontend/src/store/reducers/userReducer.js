@@ -2,13 +2,12 @@ import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER,
         REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA, TOGGLE_MARKET } from '../actions/actionTypes'
 
 const defaultStore = {
-    uuid : 'VTB',
-    type : 'LEGAL',
+    uuid : null,
+    type : null,
     loginTriggered : false,
-    userAuthenticated : true,
-    greetingShown : true,
+    userAuthenticated : false,
+    greetingShown : false,
     wrongAuthData : false,
-    currentPage : 'LEGAL',
     marketPlaceShown : false
 }
 
@@ -49,6 +48,7 @@ export default function userReducer (store = defaultStore, action) {
                 return {
                     ...store, 
                     uuid : action.payload.uuid,
+                    type : action.payload.type,
                     userAuthenticated : action.payload.userAuthenticated
                 }
             } else {

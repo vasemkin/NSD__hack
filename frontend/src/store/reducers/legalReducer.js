@@ -16,12 +16,9 @@ export default function legalReducer (store = defaultStore, action) {
             }
 
         case POST_ISSUED_TOKEN:
-            const tokens = store.issuedTokens
-            tokens.append(action.payload)
-            
             return {
                 ...store, 
-                issuedTokens : tokens
+                issuedTokens : [...store.issuedTokens, action.payload]
             }
 
         case SWITCH_TABLE_TYPE:

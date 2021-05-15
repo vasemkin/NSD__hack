@@ -14,3 +14,7 @@ export const POST_ISSUED_TOKEN = 'POST_ISSUED_TOKEN'
 
 // market
 export const GET_MARKET_TOKENS = 'GET_MARKET_TOKENS'
+
+// admin
+export const BLOCK_USER = 'BLOCK_USER'
+export const CREATE_ADMIN = 'CREATE_ADMIN'

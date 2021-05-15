@@ -16,7 +16,7 @@ import React , { useState } from 'react'
 function Authentication () {
     const dispatch = useDispatch()
     const [authValue, setAuthValue] = useState({
-        uuid : '',
+        id : '',
         password : ''
     })
 
@@ -39,7 +39,7 @@ function Authentication () {
                     variant="flushed"
                     onChange={(e) => setAuthValue({
                         ...authValue,
-                        uuid : e.target.value
+                        id : e.target.value
                         })
                     }
                     type="text" />
