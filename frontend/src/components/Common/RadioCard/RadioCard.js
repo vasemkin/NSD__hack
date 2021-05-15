@@ -10,7 +10,7 @@ function RadioCard(props) {
     const checkbox = getCheckboxProps()
   
     return (
-      <Box as="label" w="48%" textAlign="center">
+      <Box as="label" w={props.customWidth} textAlign="center">
         <input {...input} />
         <Box
           {...checkbox}

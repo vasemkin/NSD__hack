@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, REGISTER_USER, SHOW_GREETING } from './actionTypes'
+import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, 
+        REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA } from './actionTypes'
 
 export const switchLoginRegister = () => {
     return {
@@ -10,6 +11,12 @@ export const switchLoginRegister = () => {
 export const showGreeting = () => {
     return {
         type : SHOW_GREETING
+    }
+}
+
+export const wrongAuthData = () => {
+    return {
+        type : WRONG_AUTH_DATA
     }
 }
 
@@ -51,6 +58,7 @@ export const authenticateUser = (body) => {
             dispatch(showGreeting())
         } else {
             dispatch(authenticateUserCreator(body.uuid, false))
+            dispatch(wrongAuthData())
         }
     }
 }

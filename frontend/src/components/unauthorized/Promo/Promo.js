@@ -9,9 +9,14 @@ import PromoCard from "./PromoCard/PromoCard"
 
 function Promo() {
     return (
-        <Box>
+        <Box 
+        backgroundImage="url('./img/Promo__background.svg')"
+        backgroundPosition="center"
+        backgroundRepeat="no-repeat"
+        backgroundSize="cover"
+        >
 
-            <Box p="80px 100px 0 100px" bg="#eee" h="90%">
+            <Box p="80px 100px 0 100px" h="90%">
 
                 <Center>
                     <Box w="249px" h="60px">

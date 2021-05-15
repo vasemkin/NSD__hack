@@ -10,7 +10,7 @@ import {
     useRadioGroup
   } from "@chakra-ui/react"
 
-import RadioCard from './RadioCard/RadioCard'
+import RadioCard from '../../Common/RadioCard/RadioCard'
 import { switchLoginRegister, registerUser } from '../../../store/actions/userActions'
 import { useDispatch } from 'react-redux'
 import React , { useState } from 'react'
@@ -58,7 +58,7 @@ function Registration (props) {
                 {options.map((value) => {
                 const radio = getRadioProps({ value })
                 return (
-                    <RadioCard key={value} {...radio}>
+                    <RadioCard customWidth={"48%"} key={value} {...radio}>
                         {
                             value === 'LEGAL' ? 'Юр. лицо' : 'Физ. лицо'
                         }

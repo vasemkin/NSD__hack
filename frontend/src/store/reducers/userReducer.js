@@ -1,14 +1,17 @@
-import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, REGISTER_USER, SHOW_GREETING } from '../actions/actionTypes'
+import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, 
+        REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA } from '../actions/actionTypes'
 
 const defaultStore = {
-    uuid : null,
-    type : null,
-    loginTriggered : true,
-    userAuthenticated : false,
-    greetingShown : false
+    uuid : 'VTB',
+    type : 'LEGAL',
+    loginTriggered : false,
+    userAuthenticated : true,
+    greetingShown : false,
+    wrongAuthData : false,
+    currentPage : 'LEGAL'
 }
 
-export default function testReducer (store = defaultStore, action) {
+export default function userReducer (store = defaultStore, action) {
 
     switch (action.type) {
 
@@ -24,6 +27,13 @@ export default function testReducer (store = defaultStore, action) {
             return {
                 ...store, 
                 greetingShown : switchGreetingShown
+            }
+
+        case WRONG_AUTH_DATA:
+            const switchWrongAuthData = !store.wrongAuthData
+            return {
+                ...store, 
+                wrongAuthData : switchWrongAuthData
             }
 
         case AUTHENTICATE_USER:
