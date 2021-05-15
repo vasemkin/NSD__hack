@@ -10,8 +10,13 @@ import {
     MenuItem
  } from "@chakra-ui/react"
 
+import React from "react"
+import { toggleMarket } from '../../../store/actions/userActions'
+import { useDispatch } from 'react-redux'
+
 function Header(props) {
     const user = props.user
+    const dispatch = useDispatch()
 
     return(
         <Flex bg="#fff" borderBottom="1px solid #ccc" align="center" justify="space-between" p="20px 80px">
@@ -21,6 +26,7 @@ function Header(props) {
             </Box>
 
             <Box 
+            onClick={() => {dispatch(toggleMarket())}}
             as="button">
                 <Flex justify="start" align="center">
                     <Box w="20px" h="20px" mr="1rem" mt="2px">

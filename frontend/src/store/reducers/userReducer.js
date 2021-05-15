@@ -1,5 +1,5 @@
 import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, 
-        REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA } from '../actions/actionTypes'
+        REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA, TOGGLE_MARKET } from '../actions/actionTypes'
 
 const defaultStore = {
     uuid : 'VTB',
@@ -28,6 +28,13 @@ export default function userReducer (store = defaultStore, action) {
             return {
                 ...store, 
                 greetingShown : switchGreetingShown
+            }
+
+        case TOGGLE_MARKET:
+            const switchMarketPlaceShown = !store.marketPlaceShown
+            return {
+                ...store, 
+                marketPlaceShown : switchMarketPlaceShown
             }
 
         case WRONG_AUTH_DATA:

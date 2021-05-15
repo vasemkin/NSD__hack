@@ -3,8 +3,10 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { showGreeting, wrongAuthData } from './store/actions/userActions'
 import { getIssuedTokens } from './store/actions/legalActions'
+import { getMarketTokens } from './store/actions/marketActions'
 import Unauthorized from './components/Unauthorized/Unauthorized'
 import Legal from './components/Legal/Legal'
+import Market from './components/Market/Market'
 import theme from './theme/index'
 
 function App() {
@@ -12,6 +14,7 @@ function App() {
   const toast = useToast()
   const user = useSelector(state => state.user)
   const legal = useSelector(state => state.legal)
+  const market = useSelector(state => state.market)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -30,6 +33,7 @@ function App() {
       switch (user.type) {
         case 'LEGAL':
           dispatch(getIssuedTokens(user.uuid))
+          dispatch(getMarketTokens())
           break;
       
         default:
@@ -55,7 +59,9 @@ function App() {
     <ChakraProvider theme={theme}>
       {
         user.userAuthenticated ?  
-        user.currentPage === 'LEGAL' ? <Legal legal={legal} user={user}/> : null
+        
+        user.marketPlaceShown ? <Market user={user} market={market}/> :
+            user.type === 'LEGAL' ? <Legal legal={legal} user={user}/> : null
         :
         <Unauthorized user={user}/>
       }

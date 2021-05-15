@@ -1,14 +1,13 @@
 import { 
     Flex,
     Box,
-    useRadioGroup,
-    Button,
-    Image
+    useRadioGroup
  } from "@chakra-ui/react"
 
 import { useDispatch } from "react-redux"
+import React from "react"
 import { getIssuedTokens, switchTableType } from '../../store/actions/legalActions'
-import Header from '../Header/Header'
+import Header from '../Common/Header/Header'
 import AwaitingPurchaseTokens from './AwaitingPurchaseTokens/AwaitingPurchaseTokens'
 import IssuedTokens from './IssuedTokens/IssuedTokens'
 import PurchasedTokens from './PurchasedTokens/PurchasedTokens'

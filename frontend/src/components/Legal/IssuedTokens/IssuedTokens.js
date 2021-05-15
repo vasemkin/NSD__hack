@@ -18,7 +18,7 @@ function IssuedTokens (props) {
             <Thead>
                 <Tr>
                     <Th fontSize="14px" color="#000">Название</Th>
-                    <Th fontSize="14px" color="#000">Цена Выплаты</Th>
+                    <Th fontSize="14px" color="#000">Цена выплаты</Th>
                     <Th fontSize="14px" color="#000">Дата погашения</Th>
                     <Th fontSize="14px" color="#000">Статус</Th>
                     <Th fontSize="14px" color="#000" isNumeric>Кол-во</Th>
@@ -36,6 +36,8 @@ function IssuedTokens (props) {
                             <Td>{token.expiryDate}</Td>
                             <Td>
                                 {token.creationStatus === 'PENDING' ? 'В рассмотрении' : null}
+                                {token.creationStatus === 'ACCEPTED' ? 'Одобрен' : null}
+                                {token.creationStatus === 'DENIED' ? 'Отколнен' : null}
                             </Td>
                             <Td isNumeric>{token.totalCount}</Td>
                             <Td>

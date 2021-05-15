@@ -16,7 +16,7 @@ function AwaitingPurchaseTokens () {
             <Thead>
                 <Tr>
                     <Th fontSize="14px" color="#000" >Название</Th>
-                    <Th fontSize="14px" color="#000">Цена Выплаты</Th>
+                    <Th fontSize="14px" color="#000">Цена выплаты</Th>
                     <Th fontSize="14px" color="#000">Цена покупки</Th>
                     <Th fontSize="14px" color="#000">Дата погашения</Th>
                     <Th fontSize="14px" color="#000" isNumeric>Кол-во</Th>

@@ -1,10 +1,16 @@
 import axios from 'axios'
 import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, 
-        REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA } from './actionTypes'
+        REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA, TOGGLE_MARKET } from './actionTypes'
 
 export const switchLoginRegister = () => {
     return {
         type : SWITCH_LOGIN_REGISTER
+    }
+}
+
+export const toggleMarket = () => {
+    return{
+        type : TOGGLE_MARKET
     }
 }
 
