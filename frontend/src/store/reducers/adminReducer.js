@@ -24,13 +24,9 @@ export default function legalReducer (store = defaultStore, action) {
             }
 
         case ALLOW_TOKEN_ISSUE:
-            const tokApp = store.registrationRequests.filter(function(value, index, arr){ 
-                return value.name !== action.payload.name
-            });
             return {
                 ...store, 
-                permittedTokens : [...store.blockedUsers, action.payload],
-                tokenApproveRequests : tokApp
+                permittedTokens : [...store.blockedUsers, action.payload]
             }
 
         case APPROVE_USER:

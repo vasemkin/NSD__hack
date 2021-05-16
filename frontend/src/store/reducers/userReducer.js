@@ -1,25 +1,25 @@
 import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER, 
         REGISTER_USER, SHOW_GREETING, WRONG_AUTH_DATA, TOGGLE_MARKET } from '../actions/actionTypes'
 
-const defaultStore = {
-    uuid : "Admin",
-    type : 'ADMIN',
-    loginTriggered : false,
-    userAuthenticated : true,
-    greetingShown : true,
-    wrongAuthData : false,
-    marketPlaceShown : false
-}
-
 // const defaultStore = {
-//     uuid : '1',
-//     type : 'LEGAL',
+//     uuid : "Admin",
+//     type : 'ADMIN',
 //     loginTriggered : false,
 //     userAuthenticated : true,
-//     greetingShown : false,
+//     greetingShown : true,
 //     wrongAuthData : false,
 //     marketPlaceShown : false
 // }
+
+const defaultStore = {
+    uuid : '2',
+    type : 'NATURAL',
+    loginTriggered : false,
+    userAuthenticated : true,
+    greetingShown : false,
+    wrongAuthData : false,
+    marketPlaceShown : false
+}
 
 export default function userReducer (store = defaultStore, action) {
 

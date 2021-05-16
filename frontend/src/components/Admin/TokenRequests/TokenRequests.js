@@ -105,7 +105,7 @@ function TokenRequests (props) {
                         admin.tokenApproveRequests.length > 0 ?
                         admin.tokenApproveRequests.map((token) => {
                             return(
-                                <Tr>
+                                <Tr key={Date.now() + Math.random()}>
                                     <Td>{token.name}</Td>
                                     <Td>{token.payoff}</Td>
                                     <Td>{token.payoff}</Td>

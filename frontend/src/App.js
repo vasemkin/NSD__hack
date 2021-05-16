@@ -19,6 +19,7 @@ function App() {
   const legal = useSelector(state => state.legal)
   const admin = useSelector(state => state.admin)
   const market = useSelector(state => state.market)
+  const natural = useSelector(state => state.natural)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -76,7 +77,7 @@ function App() {
         
         user.marketPlaceShown ? <Market user={user} market={market}/> :
             user.type === 'LEGAL' ? <Legal legal={legal} user={user}/> : 
-            user.type === 'NATURAL' ? <Natural user={user}/> : 
+            user.type === 'NATURAL' ? <Natural natural={natural} user={user}/> : 
             user.type === 'ADMIN' ? <Admin admin={admin} user={user}/> : null
         :
         <Unauthorized user={user}/>

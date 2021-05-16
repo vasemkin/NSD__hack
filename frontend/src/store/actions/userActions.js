@@ -39,7 +39,7 @@ export const authenticateUserCreator = (uuid, type, userAuthenticated) => {
 
 export const authenticateUser = (body) => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/user/login`
+        const url = `http://00361092bf5a.ngrok.io/myapp/user/login`
         
         try {
             const res = await axios({
@@ -70,7 +70,7 @@ export const registerUserCreator = (uuid, type, userAuthenticated) => {
 
 export const registerUser = (body) => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/user/register`
+        const url = `http://00361092bf5a.ngrok.io/myapp/user/register`
         try {
             await axios({
                 method: 'post',

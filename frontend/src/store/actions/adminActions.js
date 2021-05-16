@@ -21,7 +21,7 @@ export const approveUserCreator = (uuid) => {
 
 export const approveUser = (uuid) => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/admin/user/${uuid}/approve`
+        const url = `http://00361092bf5a.ngrok.io/myapp/admin/user/${uuid}/approve`
 
         try {
             await axios({
@@ -45,7 +45,7 @@ export const declineUserCreator = (uuid) => {
 
 export const declineUser = (uuid) => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/admin/user/${uuid}/deny`
+        const url = `http://00361092bf5a.ngrok.io/myapp/admin/user/${uuid}/deny`
 
         try {
             await axios({
@@ -73,7 +73,7 @@ const allowTokenIssueDispatcher = (uuid, name) => {
 
 export const allowTokenIssue = (uuid, name) => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/issued_tokens/${uuid}/${name}/accept`
+        const url = `http://00361092bf5a.ngrok.io/myapp/tokens/issued_tokens/${uuid}/${name}/accept`
 
         try {
             await axios({
@@ -98,7 +98,7 @@ export const getRegistrationRequestsCreator = (requests) => {
 
 export const getRegistrationRequests = () => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/admin/user/pending/list`
+        const url = `http://00361092bf5a.ngrok.io/myapp/admin/user/pending/list`
 
         const res = await axios.get(url)
         
@@ -119,7 +119,7 @@ export const getTokenApproveRequestsCreator = (tokens) => {
 
 export const getTokenApproveRequests = () => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/tokens/issued_tokens/pending`
+        const url = `http://00361092bf5a.ngrok.io/myapp/tokens/issued_tokens/pending`
 
         const res = await axios.get(url)
         console.log(res)
@@ -134,7 +134,7 @@ export const getTokenApproveRequests = () => {
 
 export const blockUser = (uuid) => {
     return async dispatch => {
-        const url = `http://b9a882142e40.ngrok.io/myapp/ban_user/${uuid}`
+        const url = `http://00361092bf5a.ngrok.io/myapp/ban_user/${uuid}`
 
         try {
             await axios({

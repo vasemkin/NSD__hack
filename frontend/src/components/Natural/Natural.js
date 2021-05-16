@@ -6,7 +6,7 @@ import {
 
 import { useDispatch } from "react-redux"
 import React from "react"
-import { getIssuedTokens, switchTableType } from '../../store/actions/legalActions'
+import { switchNaturalTableType } from '../../store/actions/naturalActions'
 import Header from '../Common/Header/Header'
 import AwaitingPurchaseTokens from './AwaitingPurchaseTokens/AwaitingPurchaseTokens'
 import PurchasedTokens from './PurchasedTokens/PurchasedTokens'
@@ -15,7 +15,7 @@ import RadioCard from '../Common/RadioCard/RadioCard'
 
 function Natural(props) {
     const user = props.user
-    const legal = props.legal
+    const natural = props.natural
     const dispatch = useDispatch()
 
     const options = ["purchased_tokens", "awaiting_purchase_tokens"]
@@ -25,7 +25,7 @@ function Natural(props) {
         name: "tokenType",
         defaultValue: defaultTypeValue,
         onChange: (tokenType) => {
-            dispatch(switchTableType(tokenType))
+            dispatch(switchNaturalTableType(tokenType))
             }
         })
         
@@ -38,11 +38,11 @@ function Natural(props) {
             <Flex justify="space-between" w="100%" p="30px 80px">
 
                 <Box w="70%">
-                    <Flex maxWidth="600px" justify="space-between" {...group} mb="2rem">
+                    <Flex maxWidth="400px" justify="space-between" {...group} mb="2rem">
                         {options.map((value) => {
                         const radio = getRadioProps({ value })
                         return (
-                            <RadioCard customWidth={"31%"} key={value} {...radio}>
+                            <RadioCard customWidth={"47%"} key={value} {...radio}>
                                 {
                                     value === 'purchased_tokens' ? 'Купленные токены' : null
                                 }
@@ -56,11 +56,11 @@ function Natural(props) {
 
                     <Box>
                         {
-                            legal.tableType === 'purchased_tokens' ? <PurchasedTokens /> : null
+                            natural.tableType === 'purchased_tokens' ? <PurchasedTokens /> : null
                         }
 
                         {
-                            legal.tableType === 'awaiting_purchase_tokens' ? <AwaitingPurchaseTokens /> : null
+                            natural.tableType === 'awaiting_purchase_tokens' ? <AwaitingPurchaseTokens /> : null
                         }
                     </Box>
                 
