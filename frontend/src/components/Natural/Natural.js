@@ -56,7 +56,7 @@ function Natural(props) {
 
                     <Box>
                         {
-                            natural.tableType === 'purchased_tokens' ? <PurchasedTokens /> : null
+                            natural.tableType === 'purchased_tokens' ? <PurchasedTokens natural={natural} /> : null
                         }
 
                         {

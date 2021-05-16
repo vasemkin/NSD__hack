@@ -15,7 +15,8 @@ import {
     Grid,
     FormControl,
     FormLabel,
-    Input
+    Input,
+    useToast
  } from "@chakra-ui/react"
 
 import React, { useState } from 'react'
@@ -23,6 +24,7 @@ import { useDispatch } from 'react-redux'
 import { postIssuedToken } from '../../../store/actions/legalActions'
 
 function IssueToken (props) {
+    const toast = useToast()
     const user = props.user
     const { isOpen, onOpen, onClose } = useDisclosure()
     const dispatch = useDispatch()
@@ -35,6 +37,19 @@ function IssueToken (props) {
         payoff : 0,
         auctionEndDate : null
     })
+
+    function triggerIssueToken() {
+        dispatch(postIssuedToken(issueToken))
+        toast({
+            position: "bottom",
+            render: () => (
+            <Box color="white" p="1rem" borderRadius="20px" textAlign="center" bg="#C80F2E">
+                Заявка на выпуск токена отправлена
+            </Box>
+            ),
+            duration: 4000,
+        })
+    }
 
     return(
     <Box>
@@ -134,7 +149,7 @@ function IssueToken (props) {
                 </ModalBody>
 
                 <ModalFooter p="0" mt="2rem">
-                    <Button onClick={() => {dispatch(postIssuedToken(issueToken))}}>Выпустить</Button>
+                    <Button onClick={triggerIssueToken}>Выпустить</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>

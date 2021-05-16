@@ -2,7 +2,7 @@ import { ChakraProvider, useToast, Box  } from "@chakra-ui/react"
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { showGreeting, wrongAuthData } from './store/actions/userActions'
-import { getIssuedTokens } from './store/actions/legalActions'
+import { getIssuedTokens, getPurchasedTokens } from './store/actions/legalActions'
 import { getRegistrationRequests, getTokenApproveRequests } from './store/actions/adminActions'
 import { getMarketTokens } from './store/actions/marketActions'
 import Unauthorized from './components/Unauthorized/Unauthorized'
@@ -40,6 +40,7 @@ function App() {
         case 'LEGAL':
           dispatch(getIssuedTokens(user.uuid))
           dispatch(getMarketTokens())
+          dispatch(getPurchasedTokens())
           break
   
         case 'NATURAL':

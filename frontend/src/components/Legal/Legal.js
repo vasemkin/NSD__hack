@@ -65,7 +65,7 @@ function Legal(props) {
                         }
 
                         {
-                            legal.tableType === 'purchased_tokens' ? <PurchasedTokens /> : null
+                            legal.tableType === 'purchased_tokens' ? <PurchasedTokens legal={legal} /> : null
                         }
 
                         {

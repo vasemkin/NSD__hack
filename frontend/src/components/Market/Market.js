@@ -18,7 +18,7 @@ function Market(props) {
 
             <Flex justify="space-between" w="100%" p="30px 80px">
                 <Box w="70%">
-                    <Tokens market={market} />
+                    <Tokens user={user} market={market} />
                 </Box>
 
                 <Box w="30%" ml="2rem">

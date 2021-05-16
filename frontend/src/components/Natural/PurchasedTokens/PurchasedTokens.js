@@ -11,7 +11,9 @@ import {
     Button
 } from '@chakra-ui/react'
   
-function PurchasedTokens () {
+function PurchasedTokens (props) {
+    const natural = props.natural
+
     return(
         <Table>
             <Thead>
@@ -25,19 +27,31 @@ function PurchasedTokens () {
                 </Tr>
             </Thead>
             <Tbody>
-                <Tr>
-                    <Td>inches</Td>
-                    <Td>millimetres (mm)</Td>
-                    <Td>millimetres (mm)</Td>
-                    <Td>millimetres (mm)</Td>
-                    <Td>25.4</Td>
-                    <Td>
-                        <Flex>
-                            <Button variant="secondary" size="sm">Передать токен</Button>
-                            <Button ml="1rem" variant="secondary" size="sm">Подробнее</Button>
-                        </Flex>
-                    </Td>
-                </Tr>
+                {natural.purchasedTokens.length > 0
+                    
+                    ? natural.purchasedTokens.map((token) => {
+                        return(
+                            <Tr key={token.name}>
+                                <Td>{token.name}</Td>
+                                <Td>{token.payoff}</Td>
+                                <Td>{token.payoff}</Td>
+                                <Td>{token.expiryDate}</Td>
+                                <Td isNumeric>{token.totalCount}</Td>
+                                <Td>
+                                    <Button variant="secondary" size="sm">Убрать с торгов</Button>
+                                </Td>             
+                                <Td>
+                                    <Flex>
+                                        <Button variant="secondary" size="sm">Передать токен</Button>
+                                        <Button ml="1rem" variant="secondary" size="sm">Подробнее</Button>
+                                    </Flex>
+                                </Td>
+                            </Tr>
+                        )
+                    })
+                    :
+                    null
+                }
             </Tbody>
         </Table>
     )

@@ -22,21 +22,45 @@ import {
  } from "@chakra-ui/react"
 
 import React, { useState } from "react"
+import { useDispatch } from 'react-redux'
+import { createBuyRequest } from '../../../store/actions/marketActions'
 
 function Tokens(props) {
     const market = props.market
+    const user = props.user
 
     const toast = useToast()
+    const dispatch = useDispatch()
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     const [ currentToken, setCurrentToken ] = useState({
         token : null
     })
 
+    const [buyForm, setBuyForm] = useState({
+        buyerId : user.uuid,
+        buyPrice : '',
+        tokenCount : '',
+        tokenName : currentToken.name
+    })
+
     function triggerPurchase(token) {
         onOpen()
         setCurrentToken({
             token : token
+        })
+    }
+
+    function confirmPurchase(token) {
+        dispatch(createBuyRequest(buyForm))
+        toast({
+            position: "bottom",
+            render: () => (
+            <Box color="white" p="1rem" borderRadius="20px" textAlign="center" bg="#C80F2E">
+                Заявка на покупку токена отправлена
+            </Box>
+            ),
+            duration: 4000,
         })
     }
 
@@ -88,11 +112,11 @@ function Tokens(props) {
                             <FormLabel mb="0">Количество</FormLabel>
                             <Input 
                                 variant="flushed"
-                                // onChange={(e) => setRegisterAdmin({
-                                //     ...registerAdmin,
-                                //     uuid : e.target.value
-                                //     })
-                                // }
+                                onChange={(e) => setBuyForm({
+                                    ...buyForm,
+                                    tokenCount : e.target.value
+                                    })
+                                }
                                 type="text" />
                         </FormControl> 
 
@@ -100,18 +124,18 @@ function Tokens(props) {
                             <FormLabel mb="0">Ставка</FormLabel>
                             <Input 
                                 variant="flushed"
-                                // onChange={(e) => setRegisterAdmin({
-                                //     ...registerAdmin,
-                                //     uuid : e.target.value
-                                //     })
-                                // }
+                                onChange={(e) => setBuyForm({
+                                    ...buyForm,
+                                    buyPrice : e.target.value
+                                    })
+                                }
                                 type="text" />
                         </FormControl> 
 
                     </ModalBody>
 
                     <ModalFooter p="0" mt="2rem">
-                        <Button>Купить</Button>
+                        <Button onClick={() => {confirmPurchase(currentToken.token)}}>Купить</Button>
                     </ModalFooter>
                 </ModalContent>
             </Modal>

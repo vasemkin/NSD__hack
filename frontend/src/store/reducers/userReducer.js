@@ -12,7 +12,7 @@ import { SWITCH_LOGIN_REGISTER, AUTHENTICATE_USER,
 // }
 
 const defaultStore = {
-    uuid : '2',
+    uuid : 'test',
     type : 'NATURAL',
     loginTriggered : false,
     userAuthenticated : true,
