@@ -26,7 +26,7 @@ function Admin(props) {
 
                 <Box w="30%" ml="2rem">
                     <BankData />
-                    <RegisterRequests />
+                    <RegisterRequests admin={admin} />
                 </Box>
             </Flex>
         </Box>

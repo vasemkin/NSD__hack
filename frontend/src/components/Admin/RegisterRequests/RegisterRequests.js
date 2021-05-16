@@ -3,10 +3,45 @@ import {
     Box,
     Text,
     Image,
-    Skeleton
+    Button,
+    useToast
  } from "@chakra-ui/react"
 
-function RegisterRequests () {
+import React from "react"
+import { useDispatch } from "react-redux"
+import { approveUser, declineUser } from '../../../store/actions/adminActions'
+
+function RegisterRequests (props) {
+    const admin = props.admin
+    const toast = useToast()
+    const dispatch = useDispatch()
+
+    function triggerDeclineRegisterRequest(user) {
+        dispatch(declineUser(user))
+        toast({
+            position: "bottom",
+            render: () => (
+            <Box color="white" p="1rem" borderRadius="20px" textAlign="center" bg="#C80F2E">
+                Заявка на регистрацию {user} отклонена
+            </Box>
+            ),
+            duration: 4000,
+        })
+    }
+
+    function triggerAcceptRegisterRequest(user) {
+        dispatch(approveUser(user))
+        toast({
+            position: "bottom",
+            render: () => (
+            <Box color="white" p="1rem" borderRadius="20px" textAlign="center" bg="#C80F2E">
+                Заявка на регистрацию {user} одобрена
+            </Box>
+            ),
+            duration: 4000,
+        })
+    }
+
     return(
         <Box bg="#f3f3f3" borderRadius="30px" p="20px" mt="2rem">
             <Flex justify="start" align="center">
@@ -16,12 +51,28 @@ function RegisterRequests () {
                 <Text>Запросы на регистрацию</Text>
             </Flex>
 
-            <Flex direction="column" mt="2rem">
-                <Skeleton height="20px" mb="0.5rem" w="100%" />
-                <Skeleton height="20px" mb="0.5rem" w="100%" />
-                <Skeleton height="20px" mb="0.5rem" w="100%" />
-                <Skeleton height="20px" mb="0.5rem" w="100%" />
-                <Skeleton height="20px" mb="0.5rem" w="100%" />
+            <Flex direction="column">
+                
+                {
+                admin.registrationRequests.length > 0 ?
+                admin.registrationRequests.map((user) => {
+                    return(
+                        <Flex key={user} p="15px 20px" justify="space-between" align="center" bg="#fff" mt="20px" borderRadius="15px">
+                            <Flex direction="column">
+                                <Text fontSize="14px" color="rgb(120,120,120)">Логин</Text>
+                                <Text>{user}</Text>
+                            </Flex>
+                            <Flex>
+                                <Button variant="secondary" onClick={() => {triggerDeclineRegisterRequest(user)}} size="sm" mr="1rem">Отклонить</Button>
+                                <Button variant="secondary" onClick={() => {triggerAcceptRegisterRequest(user)}}size="sm">Принять</Button>
+                            </Flex>
+                        </Flex>
+                    )
+                })
+                : null
+            }
+
+                
             </Flex>
         </Box>
     )

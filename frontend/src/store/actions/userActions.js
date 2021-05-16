@@ -42,13 +42,13 @@ export const authenticateUser = (body) => {
         const url = `http://b9a882142e40.ngrok.io/myapp/user/login`
         
         try {
-            const req = await axios({
+            const res = await axios({
                 method: 'post',
                 url: url,
                 data: body
             })
 
-            dispatch(authenticateUserCreator(body.id, req.data.entity_type, true))
+            dispatch(authenticateUserCreator(body.id, res.data.entityType, true))
             dispatch(showGreeting())
         } catch (error) {
             dispatch(authenticateUserCreator(body.id, null, false))

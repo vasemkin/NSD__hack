@@ -18,7 +18,6 @@ import {
  } from "@chakra-ui/react"
 
 import React, { useState } from "react"
-import { registerUser } from '../../../../store/actions/userActions'
 
 function BlockUser() {
     const toast = useToast()
@@ -29,7 +28,7 @@ function BlockUser() {
             position: "bottom",
             render: () => (
             <Box color="white" p="1rem" borderRadius="20px" textAlign="center" bg="#C80F2E">
-                Пользователь успешно заблокировать 
+                Пользователь успешно заблокирован
             </Box>
             ),
             duration: 4000,
