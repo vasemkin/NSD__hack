@@ -1,0 +1,21 @@
+{
+  "name": "nsd-token-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.0.0",
+    "ethers": "^4.0.48",
+    "openzeppelin-solidity": "^4.1.0",
+    "solc": "^0.6.0"
+  },
+  "devDependencies": {
+    "concat-stream": "^2.0.0"
+  }
+}
