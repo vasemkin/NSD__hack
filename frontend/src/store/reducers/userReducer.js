@@ -12,10 +12,10 @@ const defaultStore = {
 }
 
 // const defaultStore = {
-//     uuid : null,
-//     type : null,
+//     uuid : '1',
+//     type : 'LEGAL',
 //     loginTriggered : false,
-//     userAuthenticated : false,
+//     userAuthenticated : true,
 //     greetingShown : false,
 //     wrongAuthData : false,
 //     marketPlaceShown : false

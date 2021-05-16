@@ -21,7 +21,7 @@ function Admin(props) {
             <Flex justify="space-between" w="100%" p="30px 80px">
                 <Box w="70%">
                     <TopButtons admin={admin}/>
-                    <TokenRequests />
+                    <TokenRequests admin={admin}/>
                 </Box>
 
                 <Box w="30%" ml="2rem">

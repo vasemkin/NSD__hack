@@ -1,10 +1,16 @@
-import { BLOCK_USER, CREATE_ADMIN, APPROVE_USER, DECLINE_USER, GET_REGISTRATION_REQUESTS} from '../actions/actionTypes'
+import { 
+    BLOCK_USER, CREATE_ADMIN, APPROVE_USER, 
+    DECLINE_USER, GET_REGISTRATION_REQUESTS, GET_TOKEN_APPROVE_REQUESTS, 
+    ALLOW_TOKEN_ISSUE
+} from '../actions/actionTypes'
 
 const defaultStore = {
     blockedUsers : [],
     admins : [],
     approvedUsers : [],
-    registrationRequests : []
+    registrationRequests : [],
+    tokenApproveRequests : [],
+    permittedTokens : []
 }
 
 export default function legalReducer (store = defaultStore, action) {
@@ -17,9 +23,19 @@ export default function legalReducer (store = defaultStore, action) {
                 blockedUsers : [...store.blockedUsers, action.payload]
             }
 
+        case ALLOW_TOKEN_ISSUE:
+            const tokApp = store.registrationRequests.filter(function(value, index, arr){ 
+                return value.name !== action.payload.name
+            });
+            return {
+                ...store, 
+                permittedTokens : [...store.blockedUsers, action.payload],
+                tokenApproveRequests : tokApp
+            }
+
         case APPROVE_USER:
             const regReqApp = store.registrationRequests.filter(function(value, index, arr){ 
-                return value !== action.payload;
+                return value !== action.payload
             });
             return {
                 ...store, 
@@ -40,6 +56,12 @@ export default function legalReducer (store = defaultStore, action) {
             return {
                 ...store, 
                 registrationRequests : action.payload
+            }
+
+        case GET_TOKEN_APPROVE_REQUESTS:
+            return {
+                ...store, 
+                tokenApproveRequests : action.payload
             }
 
         case CREATE_ADMIN:

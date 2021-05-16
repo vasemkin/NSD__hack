@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { allowTokenIssue } from '../../../store/actions/adminActions'
 
 import {
     Table,
@@ -23,11 +25,23 @@ import {
     useToast
 } from '@chakra-ui/react'
   
-function TokenRequests () {
+function TokenRequests (props) {
+    const dispatch = useDispatch()
+    const admin = props.admin
     const toast = useToast()
     const { isOpen, onOpen, onClose } = useDisclosure()
 
+    const [ currentToken, setCurrentToken ] = useState({
+        name : '',
+        totalCount : 0,
+        legalId : '',
+        payoff : 0,
+        expiryDate : '',
+        auctionEndDate : ''
+    })
+
     function triggerApproveToken() {
+        dispatch(allowTokenIssue(currentToken.legalId, currentToken.name))
         toast({
             position: "bottom",
             render: () => (
@@ -49,6 +63,18 @@ function TokenRequests () {
             ),
             duration: 4000,
         })
+    }
+
+    function triggerTokenModal(token){
+        setCurrentToken({
+            name : token.name,
+            totalCount : token.totalCount,
+            legalId : token.legalId,
+            payoff : token.payoff,
+            expiryDate : token.expiryDate,
+            auctionEndDate : token.auctionEndDate
+        })
+        onOpen()
     }
 
     return(
@@ -75,17 +101,25 @@ function TokenRequests () {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    <Tr>
-                        <Td>inches</Td>
-                        <Td>inches</Td>
-                        <Td>inches</Td>
-                        <Td>inches</Td>
-                        <Td>inches</Td>
-                        <Td>inches</Td>
-                        <Td>
-                            <Button ml="rem" onClick={onOpen} variant="secondary" size="sm">Подробнее</Button>
-                        </Td>
-                    </Tr>
+                    {
+                        admin.tokenApproveRequests.length > 0 ?
+                        admin.tokenApproveRequests.map((token) => {
+                            return(
+                                <Tr>
+                                    <Td>{token.name}</Td>
+                                    <Td>{token.payoff}</Td>
+                                    <Td>{token.payoff}</Td>
+                                    <Td>{token.legalId}</Td>
+                                    <Td>{token.expiryDate}</Td>
+                                    <Td>{token.totalCount}</Td>
+                                    <Td>
+                                        <Button ml="rem" onClick={() => {triggerTokenModal(token)}} variant="secondary" size="sm">Подробнее</Button>
+                                    </Td>
+                                </Tr>
+                            )
+                        })
+                        : null
+                    }
                 </Tbody>
             </Table>
 
@@ -111,13 +145,13 @@ function TokenRequests () {
                             </Thead>
                             <Tbody>
                                 <Tr>
-                                    <Td>inches</Td>
-                                    <Td>inches</Td>
-                                    <Td>inches</Td>
-                                    <Td>inches</Td>
-                                    <Td>inches</Td>
-                                    <Td>inches</Td>
-                                    <Td>inches</Td>
+                                    <Td>{currentToken.name}</Td>
+                                    <Td>{currentToken.totalCount}</Td>
+                                    <Td>{currentToken.legalId}</Td>
+                                    <Td>{currentToken.payoff}</Td>
+                                    <Td>{currentToken.payoff}</Td>
+                                    <Td>{currentToken.expiryDate}</Td>
+                                    <Td>{currentToken.auctionEndDate}</Td>
                                 </Tr>
                             </Tbody>
                         </Table>
