@@ -41,13 +41,17 @@ function Tokens(props) {
         buyerId : user.uuid,
         buyPrice : '',
         tokenCount : '',
-        tokenName : currentToken.name
+        tokenName : ''
     })
 
     function triggerPurchase(token) {
         onOpen()
         setCurrentToken({
             token : token
+        })
+        setBuyForm({
+            ...buyForm,
+            tokenName : token.name,
         })
     }
 
