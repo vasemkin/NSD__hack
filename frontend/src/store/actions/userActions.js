@@ -57,13 +57,12 @@ export const authenticateUser = (body) => {
     }
 }
 
-export const registerUserCreator = (uuid, type, userAuthenticated) => {
+export const registerUserCreator = (uuid, type) => {
     return {
         type : REGISTER_USER,
         payload : {
             uuid : uuid,
-            type : type,
-            userAuthenticated : userAuthenticated
+            type : type
         }
     }
 }
@@ -78,10 +77,10 @@ export const registerUser = (body) => {
                 data: body
             })
             
-            dispatch(registerUserCreator(body.id, body.entity_type, true))
+            dispatch(registerUserCreator(body.id, body.entity_type))
             dispatch(showGreeting())
         } catch (error) {
-            dispatch(registerUserCreator(body.id, body.entity_type, false))
+            dispatch(registerUserCreator(body.id, body.entity_type))
             dispatch(wrongAuthData())
         }
     }

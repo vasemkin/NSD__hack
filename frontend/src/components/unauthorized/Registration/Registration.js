@@ -7,7 +7,8 @@ import {
     Flex,
     Text,
     Heading,
-    useRadioGroup
+    useRadioGroup,
+    useToast
   } from "@chakra-ui/react"
 
 import RadioCard from '../../Common/RadioCard/RadioCard'
@@ -17,6 +18,7 @@ import React , { useState } from 'react'
 
 function Registration (props) {
     const dispatch = useDispatch()
+    const toast = useToast()
 
     const options = ["LEGAL", "NATURAL"]
     const defaultTypeValue = options[0]
@@ -33,6 +35,15 @@ function Registration (props) {
 
     function triggerRegisterUser () {
         dispatch(registerUser(registerValue))
+        toast({
+            position: "bottom",
+            render: () => (
+            <Box color="white" p="1rem" borderRadius="20px" textAlign="center" bg="#C80F2E">
+                Запрос на регистрацию успешно отправлен
+            </Box>
+            ),
+            duration: 4000,
+        })
     }
 
     const { getRootProps, getRadioProps } = useRadioGroup({

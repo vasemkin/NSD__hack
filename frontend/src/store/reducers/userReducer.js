@@ -69,19 +69,10 @@ export default function userReducer (store = defaultStore, action) {
             }
 
         case REGISTER_USER:
-            if (action.payload.userAuthenticated) {
-                return {
-                    ...store, 
-                    uuid : action.payload.uuid,
-                    type : action.payload.type,
-                    userAuthenticated : action.payload.userAuthenticated
-                }
-            } else {
-                return {
-                    ...store, 
-                    uuid : action.payload.uuid,
-                    type : action.payload.type,
-                }
+            return {
+                ...store, 
+                uuid : action.payload.uuid,
+                type : action.payload.type
             }
     
         default:
